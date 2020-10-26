@@ -5,8 +5,18 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className="bodyWrapper">
+        <div className="chartsWrapper">
+          <div className="locationChart">
 
+          </div>
+          <div className="voltageChart">
+
+          </div>
+        </div>
+        <div className="detailWrapper">
+
+        </div>
       </div>
     );
   }
