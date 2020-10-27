@@ -59,7 +59,7 @@ class Map extends Component {
             key = {this.props.tripDet.tripId}
             id = {this.props.tripDet.tripId}
             path = {this.state.path}
-            googleMapURL = {`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places`}
+            googleMapURL = {`https://maps.googleapis.com/maps/api/js?key=AIzaSyByuiA0PG5myWtv1d8CnE1RMHnMmu7rqQ8&v=3.exp&libraries=geometry,drawing,places`}
             loadingElement = {<div style={{ height: `100%` }} />}
             containerElement = {<div style={{ height: this.props.height }} />}
             mapElement = {<div style={{ height: `100%` }} />}

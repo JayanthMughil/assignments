@@ -3,6 +3,7 @@ import {Map} from "./map";
 import {VoltageChart} from "./chart";
 import {Vehicle} from "./dropDowns";
 import {trip} from "./data";
+import {Detail} from "./details";
 import '../style/App.css';
 
 class App extends Component {
@@ -57,7 +58,8 @@ class App extends Component {
           </div>
         </div>
         <div className="detailWrapper">
-
+                {this.state.isLoaded && this.state.tripDetails ?
+                <Detail tripDet={this.state.tripDetails[0]} key={this.state.tripDetails[0].tripId} /> : ""}
         </div>
       </div>
     );

@@ -94,3 +94,21 @@ body, html {
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.details {
+  height: 70px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+}
+
+.detailLabel {
+  padding-top: 20px;
+  font-weight: bold;
+  width: 30%;
+}
+
+.detailValue {
+  padding-top: 20px;
+  width: 70%;
+}
