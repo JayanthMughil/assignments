@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Map} from "./map";
 import {VoltageChart} from "./chart";
 import {Vehicle} from "./dropDowns";
+import {trip} from "./data";
 import '../style/App.css';
 
 class App extends Component {
@@ -29,21 +30,29 @@ class App extends Component {
     });
   }
 
+  setTrip = (veh, tripd) => {
+    this.setState({
+      tripDetails: trip.filter(tr => tr.vin === veh && tr.tripId === tripd)
+    });
+  }
+
   render () {
     return (
       <div className="bodyWrapper">
         <div className="chartsWrapper">
           <div className="dropDownWrapper">
-            <Vehicle />
+            <Vehicle setTrip={this.setTrip} />
           </div>
           <div className="locationChart">
             <div className="mapWrapper" ref={this.mapWrapRef}>
-              {this.state.isLoaded ? <Map width={this.state.mapWidth} height={this.state.mapHeight}/> : ""}
+              {this.state.isLoaded && this.state.tripDetails ?
+               <Map tripDet={this.state.tripDetails[0]} width={this.state.mapWidth} height={this.state.mapHeight}/> : ""}
             </div>
           </div>
           <div className="voltageChart">
             <div className="chartWrap" ref={this.chartWrapRef}>
-              {this.state.isLoaded ? <VoltageChart width={this.state.chartWidth} height={this.state.chartHeight} /> : ""}
+              {this.state.isLoaded && this.state.tripDetails ? 
+                <VoltageChart tripDet={this.state.tripDetails[0]} width={this.state.chartWidth} height={this.state.chartHeight} /> : ""}
             </div>
           </div>
         </div>

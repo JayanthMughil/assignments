@@ -41,6 +41,7 @@ class Vehicle extends Component {
     }
 
     componentDidMount = () => {
+        this.props.setTrip(this.state.selectedVeh, this.state.selectedTrip);
         this.setState({
             isLoaded: true
         });
@@ -82,8 +83,9 @@ class Vehicle extends Component {
                 selectedVeh: event.target.getAttribute("value"),
                 trips: tripArray,
                 selectedTrip: tripArray[0]
+            }, function () {
+                this.props.setTrip(this.state.selectedVeh, this.state.selectedTrip);
             });
-
         }
         this.closeDrop();
     }
@@ -91,6 +93,8 @@ class Vehicle extends Component {
     handleTripSelection = (event) => {
         this.setState({
             selectedTrip: event.target.getAttribute("value")
+        }, function () {
+            this.props.setTrip(this.state.selectedVeh, this.state.selectedTrip);
         });
         this.closeDrop();
     }

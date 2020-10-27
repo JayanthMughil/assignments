@@ -7,15 +7,15 @@ class VoltageChart extends Component {
     constructor (props) {
         super (props);
         this.state = {
-            voltage: this.getChartData()
+            voltage: this.getChartData(this.props.tripDet)
         };
     }
 
-    getChartData = () => {
+    getChartData = (tripDet) => {
         let array = [];
-        for (let i = 0; i < trip[0].batteryVoltageAdc.length; i++) {
+        for (let i = 0; i < tripDet.batteryVoltageAdc.length; i++) {
             const obj = {
-                volt: trip[0].batteryVoltageAdc[i],
+                volt: tripDet.batteryVoltageAdc[i],
                 x: ""
             };
             array.push(obj);
@@ -23,10 +23,21 @@ class VoltageChart extends Component {
         return array;
     }
 
+    setVoltage = () => {
+        this.setState({
+            voltage: this.getChartData(this.props.tripDet)
+        });
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps !== this.props) {
+            this.setVoltage();
+        }
+    }
+
     render () {
-        console.log(this.state.voltage);
         return (
-        <LineChart width={this.props.width} height={this.props.height} data={this.state.voltage}>
+        <LineChart key={this.props.tripDet.tripId} width={this.props.width} height={this.props.height} data={this.state.voltage}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <Tooltip />
             <YAxis dataKey="volt" domain={['auto', 'auto']} />
